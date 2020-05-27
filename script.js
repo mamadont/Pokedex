@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,7 +35,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
 // Saving the div (pokemon card) in this variable
 var container = document.getElementById("app");
 var pokemons = 100;
@@ -45,24 +45,22 @@ var fetchData = function () {
     }
 };
 // Fetch pokemon data for specified id 
-var getPokemon = function (id) { return __awaiter(_this, void 0, void 0, function () {
+var getPokemon = function (id) { return __awaiter(void 0, void 0, void 0, function () {
     var data, pokemon, pokemonType, transformedPokemon;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch("https://pokeapi.co/api/v2/pokemon/" + id)
-                // Convert data to JSON 
-            ];
+            case 0: return [4 /*yield*/, fetch("https://pokeapi.co/api/v2/pokemon/" + id)];
             case 1:
                 data = _a.sent();
-                pokemon = data.json();
-                pokemonType = pokemon.types
-                    .map(function (poke) { return poke.type.name; })
-                    .join(", ");
+                return [4 /*yield*/, data.json()];
+            case 2:
+                pokemon = _a.sent();
+                pokemonType = pokemon.types.map(function (poke) { return poke.type.name; }).join(", ");
                 transformedPokemon = {
                     id: pokemon.id,
                     name: pokemon.name,
                     image: "" + pokemon.sprites.front_default,
-                    type: pokemonType
+                    type: pokemonType,
                 };
                 showPokemon(transformedPokemon);
                 return [2 /*return*/];
